@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Smart File Converter</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#5f9cff,#a259ff);
+}
+
+.container{
+background:white;
+padding:50px;
+border-radius:18px;
+width:420px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
+h1{
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#666;
+margin-bottom:30px;
+}
+
+input[type=file]{
+margin-top:10px;
+margin-bottom:20px;
+}
+
+select{
+width:100%;
+padding:12px;
+margin-top:15px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:linear-gradient(90deg,#4facfe,#00f2fe);
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+.loader{
+display:none;
+margin-top:20px;
+}
+
+.spinner{
+border:4px solid #eee;
+border-top:4px solid #3498db;
+border-radius:50%;
+width:30px;
+height:30px;
+animation:spin 1s linear infinite;
+margin:auto;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ Smart File Converter</h1>
+<p class="subtitle">Upload and convert your document instantly</p>
+
+<form action="/convert" method="POST" enctype="multipart/form-data" id="form">
+
+<input type="file" name="file" required>
+
+<select name="type">
+<option value="pdf-docx">PDF → DOCX</option>
+<option value="docx-pdf">DOCX → PDF</option>
+<option value="docx-txt">DOCX → TXT</option>
+<option value="docx-html">DOCX → HTML</option>
+<option value="docx-odt">DOCX → ODT</option>
+<option value="docx-ppt">DOCX → PPT</option>
+<option value="image-pdf">Image → PDF</option>
+</select>
+
+<button type="submit">Convert File</button>
+
+<div class="loader" id="loader">
+<div class="spinner"></div>
+<p>Converting...</p>
+</div>
+
+</form>
+
+</div>
+
+<script>
+const form=document.getElementById("form")
+const loader=document.getElementById("loader")
+
+form.addEventListener("submit", () => {
+loader.style.display = "block"
+
+setTimeout(() => {
+loader.style.display = "none"
+}, 4000)
+})
+</script>
+
+</body>
+</html>
